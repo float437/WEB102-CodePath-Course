@@ -21,7 +21,7 @@ const App = () => {
       <div>
           <Header/>
         <div className='content'>
-          <Card name="Mario Kart World" type="Racing" image={marioKartWorldImg}/>
+          <Card name="Mario Kart World" type="Racing" image={marioKartWorldImg} menuLink="https://www.nintendo.com/us/store/products/mario-kart-world-switch-2/"/>
           <Card name="Mario Kart 8 Deluxe" type="Racing" image={marioKart8DeluxeImg}/>
           <Card name="Legend of Zelda: Breath of The Wild" type="Adventure RPG" image={botwImg}/>
           <Card name="Legend of Zelda: Tears of the Kingdom" type="Adventure RPG" image={totkImg}/>
