@@ -1,0 +1,9 @@
+.multiplierCard{
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    color: rgb(255, 255, 255);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
