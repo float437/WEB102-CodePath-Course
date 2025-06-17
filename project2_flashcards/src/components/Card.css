@@ -1,0 +1,21 @@
+.cardBody{
+  border-radius: 8px;
+  border: 2px solid transparent;
+  padding: 0.6em 1.2em;
+  background-color: rgb(255, 0, 0);
+  height: 250px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.cardBody:hover {
+    border: 2px solid;
+  border-color: #747bff;
+}
+.cardBody:focus,
+.cardBody:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
