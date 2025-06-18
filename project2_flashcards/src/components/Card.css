@@ -8,8 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: transform 1s;
   transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+  /* Position being relative allows for ... */
+  position: relative;
 }
 
 .cardBody:hover {
@@ -17,12 +19,33 @@
     border-color: #747bff;
 
 }
-.cardBody:focus,
-.cardBody:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.cardBody.flipped{
+  transform:rotateX(180deg);
 }
 
-.flipped{
-  transform:rotateX(180deg);
-  transition: transform 0.2s;
+.cardFront, .cardBack{
+  /* The info should occupy the same space */
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* New attribute! Hides the text when facing away from user */
+  backface-visibility: hidden;
+
+
+}
+
+.cardFront {
+  transform: rotateX(0deg)
+}
+
+.cardBack{
+  transform: rotateX( 180deg );
+}
+
+.hidden{
+  display: none;
 }
