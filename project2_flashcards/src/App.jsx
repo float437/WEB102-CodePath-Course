@@ -21,14 +21,16 @@ const flashcards = [
 ];
 
   // const currentCard =  pressedStart ? {"Start!": "Press the Right Arrow"} : flashcards[count]
-  var currentCard = flashcards[count]
+  console.log("Current Count: " + count)
+  console.log("Flashcard length " + flashcards.length)
+  console.log("Current Card : " + flashcards[count].Question)
+  const safeCount = Math.max(0, Math.min(count, flashcards.length - 1));
+  var currentCard = flashcards[safeCount];
   
-  // can access the question and answer later by passing it to to the card
-
 
   const nextCard = () => {
     setCount((count) => 
-          count >= flashcards.length ? count = 1 : count + 1
+          count >= flashcards.length-1 ? count = 1 : count + 1
           )
     //when going to next card, question should always be shown first
     setShowAnswer(false)
@@ -36,7 +38,7 @@ const flashcards = [
 
   const prevCard = () => {
     setCount((count) => 
-            count <= 0 ? count = flashcards.length : count - 1
+            count <= 0 ? count = flashcards.length-1 : count - 1
             )
     //when going to next card, question should always be shown first
     setShowAnswer(false)
@@ -64,6 +66,8 @@ const flashcards = [
       <Card 
         cardQuestion = {currentCard.Question} 
         cardAnswer = {currentCard.Answer}
+        flipCard = {flipCard}
+        showAnswer = {showAnswer}
       />
       <div className="controls">
         <button onClick={() => prevCard()}>

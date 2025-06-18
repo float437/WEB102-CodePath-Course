@@ -1,24 +1,19 @@
 import React from "react"
 import './Card.css'
 
-const Card = ({cardQuestion, cardAnswer}) => {
+const Card = ({cardQuestion, cardAnswer, flipCard, showAnswer}) => {
+
+//  style={{
+//         transform: showAnswer ? 'rotateX(180deg)' : 'rotateX(0deg)',
+//         transition: 'transform 0.6s'
+//       }}
     return (
-        <div className="cardBody">
+        <div className="cardBody" id="test" onClick={flipCard}>
             <div className='CardInfo'>
-                <p>{cardQuestion}</p>
-                <p>{cardAnswer}</p>
+                {showAnswer ? cardAnswer : cardQuestion}
             </div>
         </div>
     )
 }
-
-{/* <div className="cardBody">
-            <div className='CardQuestion'>
-                <p>{cardQuestion}</p>
-            </div>
-            <div className='CardAnswer'>
-                <p>{cardAnswer}</p>
-            </div>
-        </div> */}
 
 export default Card;
