@@ -16,16 +16,3 @@
 .controls {
   padding: 2em;
 }
-
-
-.cardBody{
-  border-radius: 8px;
-  border: 2px solid transparent;
-  padding: 0.6em 1.2em;
-  background-color: #73d3d1;
-  height: 250px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
