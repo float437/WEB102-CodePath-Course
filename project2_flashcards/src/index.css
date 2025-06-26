@@ -1,11 +1,19 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Font and general text properties */
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif; /* A modern, clean sans-serif font */
+  line-height: 1.6; /* Slightly increased line-height for better readability */
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: #000000;
-  background-color: #e5ffe4;
+  /* Color Scheme - Light Mode (Default) */
+  --primary-bg-color: #f8faff; /* Very light blue-white for a clean background */
+  --secondary-bg-color: #ffffff; /* Pure white for cards/sections that stand out */
+  --text-color: #333333; /* Dark gray for primary text, good contrast */
+  --secondary-text-color: #666666; /* Lighter gray for secondary text/labels */
+  --accent-color: #4285f4; /* Google Blue - vibrant and recognizable for actions/highlights */
+  --accent-hover-color: #357ae8; /* Slightly darker accent on hover */
+  --border-color: #e0e0e0; /* Light gray for subtle borders */
+  --success-color: #28a745; /* Green for correct answers/success messages */
+  --error-color: #dc3545; /* Red for incorrect answers/error messages */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,46 +21,98 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column; /* Changed to column for better overall page layout */
+  align-items: center; /* Center horizontally */
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--primary-bg-color); /* Use the defined primary background color */
+  color: var(--text-color); /* Use the defined text color */
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3em; /* Slightly adjusted for balance */
+  line-height: 1.2;
+  color: var(--text-color); /* Ensure headings use the main text color */
+  margin-bottom: 0.5em; /* Add some space below headings */
 }
 
+/* General button styling */
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border: 1px solid var(--border-color); /* Subtle border for buttons */
+  padding: 0.8em 1.5em; /* Increased padding for better clickability and appearance */
+  font-size: 1.05em; /* Slightly larger font size for buttons */
+  font-weight: 600; /* Bolder text for buttons */
   font-family: inherit;
-  background-color: #f9f9f9;
+  background-color: var(--secondary-bg-color); /* White background for default buttons */
+  color: var(--text-color); /* Default button text color */
   cursor: pointer;
-  transition: border-color 0.25s;
-  margin-left: 10px;
-  margin-right: 10px;
-  color: #000000;
+  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
+  margin: 0 10px; /* Shorthand for margin-left and margin-right */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
+
 button:hover {
-  border-color: #747bff;
+  border-color: var(--accent-color); /* Accent border on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+  transform: translateY(-1px); /* Slight lift effect */
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid var(--accent-hover-color); /* Accent color outline for focus */
+  outline-offset: 2px; /* Offset the outline from the button */
+}
+
+/* Add more specific styles for Quizlet clone components as needed, e.g.: */
+
+/* Card Container for Flashcards */
+.card-container {
+  background-color: var(--secondary-bg-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin: 20px auto; /* Center the card container */
+  max-width: 600px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  min-height: 200px; /* Ensure cards have a decent height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+
+
+/* Input Fields */
+
+form{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+input[type="text"],
+textarea {
+  width: calc(60% - 20px);
+  padding: 12px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1em;
+  color: var(--text-color);
+  background-color: var(--secondary-bg-color);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2); /* Light blue shadow on focus */
+  outline: none;
 }

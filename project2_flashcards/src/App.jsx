@@ -3,9 +3,9 @@ import './App.css'
 import Card from './components/Card.jsx';
 
 function App() {
-  const [showAnswer,setShowAnswer] = useState(false)
-  const [count, setCount] = useState(0)
-  var pressedStart = false
+  const [showAnswer,setShowAnswer] = useState(false);
+  const [count, setCount] = useState(0);
+  const [input, setInput] = useState("");
 
 const flashcards = [
     {Question: "What is the longest river in the world?", Answer: "Nile River"},
@@ -26,6 +26,21 @@ const flashcards = [
   console.log("Current Card : " + flashcards[count].Question)
   const safeCount = Math.max(0, Math.min(count, flashcards.length - 1));
   var currentCard = flashcards[safeCount];
+
+  const handleInput = (e) =>{
+    setInput(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    // alert('you have input ' + input);
+    // need to take the input given, input, and 
+    // return if it matches the text in flashcards[count].Answer
+    if (input === flashcards[count].Answer){
+      alert('Answer Matches!')
+    }else{
+      alert('you entered' + input + ' answer:' + flashcards[count].Answer)
+    }
+  }
   
 
   const nextCard = () => {
@@ -69,6 +84,13 @@ const flashcards = [
         flipCard = {flipCard}
         showAnswer = {showAnswer}
       />
+
+      <form onSubmit={handleSubmit}>
+        <input type='text' id='answerBox' class='answerBox'value={input} onChange={handleInput}/>
+        {/* <label for='answerBox'>test</label> */}
+        <input type='submit'class='submitButton'/>
+      </form>
+
       <div className="controls">
         <button onClick={() => prevCard()}>
           Left Arrow

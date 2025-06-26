@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -15,4 +16,23 @@
 
 .controls {
   padding: 2em;
+}
+
+.answerBox{
+  background-color: white;
+}
+
+.submitButton{
+  border-radius: 8px;
+  border: 1px solid var(--border-color); /* Subtle border for buttons */
+  padding: 0.8em 1.5em; /* Increased padding for better clickability and appearance */
+  font-size: 1.05em; /* Slightly larger font size for buttons */
+  font-weight: 600; /* Bolder text for buttons */
+  font-family: inherit;
+  background-color: var(--secondary-bg-color); /* White background for default buttons */
+  color: var(--text-color); /* Default button text color */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
+  margin: 0 10px; /* Shorthand for margin-left and margin-right */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
