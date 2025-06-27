@@ -14,11 +14,6 @@
   --border-color: #e0e0e0; /* Light gray for subtle borders */
   --success-color: #28a745; /* Green for correct answers/success messages */
   --error-color: #dc3545; /* Red for incorrect answers/error messages */
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -99,7 +94,7 @@ form{
     margin-bottom: 15px;
 }
 input[type="text"],
-textarea {
+.answerBox {
   width: calc(60% - 20px);
   padding: 12px 10px;
   border: 1px solid var(--border-color);
@@ -110,9 +105,23 @@ textarea {
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-input[type="text"]:focus,
-textarea:focus {
+.answerBox.correct{
+  background-color: var(--success-color);
+}
+
+.answerBox.incorrect{
+  background-color: var(--error-color);
+}
+
+input[type="text"],
+.answerBox {
   border-color: var(--accent-color);
   box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2); /* Light blue shadow on focus */
   outline: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.greyedOut{
+  background-color: rgb(70, 70, 70);
+  color:#a2a2a2;
 }

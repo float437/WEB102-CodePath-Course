@@ -20,10 +20,9 @@ const flashcards = [
     {Question: "What is the driest continent on Earth?", Answer: "Antarctica"}
 ];
 
-  // const currentCard =  pressedStart ? {"Start!": "Press the Right Arrow"} : flashcards[count]
-  console.log("Current Count: " + count)
-  console.log("Flashcard length " + flashcards.length)
-  console.log("Current Card : " + flashcards[count].Question)
+  // console.log("Current Count: " + count)
+  // console.log("Flashcard length " + flashcards.length)
+  // console.log("Current Card : " + flashcards[count].Question)
   const safeCount = Math.max(0, Math.min(count, flashcards.length - 1));
   var currentCard = flashcards[safeCount];
 
@@ -32,32 +31,80 @@ const flashcards = [
   }
 
   const handleSubmit = (e) => {
-    // alert('you have input ' + input);
-    // need to take the input given, input, and 
-    // return if it matches the text in flashcards[count].Answer
+    e.preventDefault()
     if (input === flashcards[count].Answer){
-      alert('Answer Matches!')
+      // change the background of the textarea to light green for one second
+      changeTextAreaBackground('correct');
+      setTimeout(() => {changeTextAreaBackground('correct')}, 1000);
     }else{
-      alert('you entered' + input + ' answer:' + flashcards[count].Answer)
+      // change background of textarea to light red for one second
+      changeTextAreaBackground('incorrect');
+      setTimeout(() => {changeTextAreaBackground('incorrect')}, 1000);
     }
+  }
+
+  const changeTextAreaBackground = (correct) =>{
+    let textArea = document.getElementById('answerBox');
+    textArea.classList.toggle(correct);
+  }
+
+  const greyOut = (id) =>{
+    let greyButton = document.getElementById(`${id}`);
+    textArea.classList.toggle('greyedOut');
   }
   
 
   const nextCard = () => {
-    setCount((count) => 
-          count >= flashcards.length-1 ? count = 1 : count + 1
-          )
+    let prevButton = document.getElementById('leftButton');
+    let nextButton = document.getElementById('rightButton');
+    setCount((count) => {
+      const newCount = count >= flashcards.length-1 ? flashcards.length-1 : count + 1;
+        // console.log("Before Next Count: " + newCount)
+        if(prevButton.classList.contains('greyedOut') && newCount >= 0){
+                  // console.log("After Next Count: " + newCount)
+                  prevButton.classList.remove('greyedOut')
+        }
+        if(!nextButton.classList.contains('greyedOut') && newCount == flashcards.length -1){
+          nextButton.classList.add('greyedOut')
+        }
+
+      return newCount
+    })
     //when going to next card, question should always be shown first
     setShowAnswer(false)
+        
   }
 
   const prevCard = () => {
-    setCount((count) => 
-            count <= 0 ? count = flashcards.length-1 : count - 1
-            )
-    //when going to next card, question should always be shown first
-    setShowAnswer(false)
+      // need to check the buttons class list to see if it has the greyedOut class, else count as normal
+      let prevButton = document.getElementById('leftButton');
+      let nextButton = document.getElementById('rightButton');
+    
+      setCount((count) => {
+        const newCount = count <= 0 ? 0 : count - 1;
+        
+        if(!prevButton.classList.contains('greyedOut') && newCount <= 0){
+          prevButton.classList.add('greyedOut')
+        }
+        if(nextButton.classList.contains('greyedOut') && newCount <= flashcards.length - 1){
+          nextButton.classList.remove('greyedOut')
+        }
+
+        return newCount
+      })
+      //when going to next card, question should always be shown first
+      setShowAnswer(false)
   }
+
+  //   const prevCard = () => {
+  //   // need to check the buttons class list to see if it has the greyedOut class, else count as normal
+  //   let prevButton = document.getElementById('leftButton');
+  //     setCount((count) => 
+  //             count <= 0 ? count = flashcards.length-1 : count - 1
+  //             )
+  //     //when going to next card, question should always be shown first
+  //     setShowAnswer(false)
+  // }
 
   const randomCard = () =>{
     setCount((count) => 
@@ -86,27 +133,25 @@ const flashcards = [
       />
 
       <form onSubmit={handleSubmit}>
-        <input type='text' id='answerBox' class='answerBox'value={input} onChange={handleInput}/>
+        <input type='text' id='answerBox' className='answerBox'value={input} onChange={handleInput}/>
         {/* <label for='answerBox'>test</label> */}
-        <input type='submit'class='submitButton'/>
+        <input type='submit'className='submitButton'/>
       </form>
 
       <div className="controls">
-        <button onClick={() => prevCard()}>
+        <button id='leftButton' className='greyedOut' onClick={() => prevCard()}>
           Left Arrow
         </button>
-        <button onClick={() => nextCard()}>
+        <button id='rightButton' onClick={() => nextCard()}>
           Right Arrow
         </button>
-        <button onClick={() => randomCard()}>
+        <button id='randomButton' onClick={() => randomCard()}>
           Random Card
         </button>
       </div>
     </>
   )
 }
-
-//<Card cardQuestion={cardQuestion} cardAnswer={cardAnswer}/>
 
 function getRandomInt (max){
   var number
