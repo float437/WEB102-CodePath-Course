@@ -72,7 +72,6 @@ const flashcards = [
     })
     //when going to next card, question should always be shown first
     setShowAnswer(false)
-        
   }
 
   const prevCard = () => {
@@ -95,16 +94,6 @@ const flashcards = [
       //when going to next card, question should always be shown first
       setShowAnswer(false)
   }
-
-  //   const prevCard = () => {
-  //   // need to check the buttons class list to see if it has the greyedOut class, else count as normal
-  //   let prevButton = document.getElementById('leftButton');
-  //     setCount((count) => 
-  //             count <= 0 ? count = flashcards.length-1 : count - 1
-  //             )
-  //     //when going to next card, question should always be shown first
-  //     setShowAnswer(false)
-  // }
 
   const randomCard = () =>{
     setCount((count) => 
