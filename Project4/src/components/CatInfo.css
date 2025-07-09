@@ -1,0 +1,13 @@
+.informationContainer{
+    border: 1px solid;
+    border-color: aliceblue;
+    border-radius: 8px;
+    margin: 1rem auto;
+}
+
+.catInformationList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}

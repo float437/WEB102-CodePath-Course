@@ -1,0 +1,10 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mainInfo{
+  background-color: rgb(86, 86, 86);
+  padding: 2rem;
+}
