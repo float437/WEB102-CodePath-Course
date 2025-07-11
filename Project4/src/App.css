@@ -6,5 +6,8 @@
 
 .mainInfo{
   background-color: rgb(86, 86, 86);
+  border-radius: 8px;
+  height: 80vh;
   padding: 2rem;
+  width: 600px;
 }

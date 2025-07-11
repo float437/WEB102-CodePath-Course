@@ -1,12 +1,11 @@
 import React from "react"
 import './Discover.css'
 
-const Discover = () =>{
+const Discover = (props) =>{
 
 
     return (<>
-        <button>🔀 Discover!</button>
-    
+        <button onClick={props.onDiscover}>🔀 Discover!</button>
     </>)
 }
 
