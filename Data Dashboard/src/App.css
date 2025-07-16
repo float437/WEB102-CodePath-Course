@@ -1,0 +1,12 @@
+.flexSidebarContainer{
+  display: flex;
+  height: 100vh;
+}
+
+.flexMainContainer{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+}
+

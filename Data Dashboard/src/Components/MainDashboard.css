@@ -1,0 +1,49 @@
+.dashboardBody{
+    /* max-width: 1280px; */
+    padding: 2rem;
+    text-align: center;
+    background-color: rgb(158, 155, 189);
+    /* background-color: rgba(51, 170, 51, .1); */
+    flex: 0 0 70%;
+}
+
+.dashboardInfo{
+    margin: 0 auto;
+}
+
+/* --- Form Styling --- */
+form {
+    display: flex; /* Arranges input and button in a row */
+    gap: 10px; /* Adds space between the input and button */
+    margin-bottom: 20px; /* Space below the form */
+    align-items: center; /* Vertically aligns items in the middle */
+}
+
+/* --- Input Field Styling --- */
+input[type="text"] {
+    padding: 10px; /* Space inside the input field */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 16px; /* Comfortable font size */
+    flex-grow: 1; /* Allows the input field to take up available space */
+}
+
+input[type="text"]::placeholder {
+    color: #888; /* Color for placeholder text */
+}
+
+/* --- Submit Button Styling --- */
+button[type="submit"] {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    padding: 10px 15px; /* Space inside the button */
+    border: none; /* No border */
+    border-radius: 4px; /* Slightly rounded corners */
+    cursor: pointer; /* Changes cursor to a pointer on hover */
+    font-size: 16px; /* Comfortable font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
