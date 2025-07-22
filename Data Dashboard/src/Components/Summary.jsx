@@ -64,7 +64,7 @@ const Summary = (props) => {
                     <div className="cardBody">
                         <h2>Total Number of Recipes</h2>
                         <br></br>
-                        {isLoading ? (
+                        {props.isLoading ? (
                                         <p>Loading...</p>
                                         ) : recipes.length > 0 ? (
                                         <h2>
@@ -77,7 +77,7 @@ const Summary = (props) => {
                     <div className="cardBody">
                         <h2>Recipe of the Day</h2>
                         <br></br>
-                        {isLoading ? (
+                        {props.isLoading ? (
                                         <p>Loading...</p>
                                         ) : recipes.length > 0 ? (
                                         <h2>
@@ -90,7 +90,7 @@ const Summary = (props) => {
                     <div className="cardBody">
                         <h2>Most Protein Recipe</h2>
                         <br></br>
-                        {isLoading ? (
+                        {props.isLoading ? (
                                         <p>Loading...</p>
                                         ) : recipes.length > 0 ? (
                                         <ul>

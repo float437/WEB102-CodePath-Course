@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react"
 const API_KEY = import.meta.env.VITE_APP_API_KEY
 
-const Taste = ({id}) => {
+const Taste = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [tasteData, setTasteData] = useState(null);
     const [maxFlavor, setMaxFlavor] = useState(null);
 
 useEffect(() => {
   const getTasteFromId = async () => {
-    if (!id) return;
+    if (!props.id) return;
     setIsLoading(true); 
 
+    //TODO REMOVE API CALL FROM TASTE AND FEED WHATEVER IT NEEDS FROM EITHER APP OR MAIN DASHBOARD AS A PROP.
+
     try {
-      const baseUrl =
-        `https://api.spoonacular.com/recipes/${id}/tasteWidget.json`;
+      // const baseUrl =
+      //   `https://api.spoonacular.com/recipes/${props.id}/tasteWidget.json`;
       const params = {
         apiKey: API_KEY
       };
@@ -42,7 +44,7 @@ useEffect(() => {
   };
 
   getTasteFromId();
-}, [id]); //rerun the API call only when the Id is changed?.   
+}, [props.id]); //rerun the API call only when the Id is changed?.   
     
     if (isLoading) return <p>Loading taste data...</p>;
     if (!tasteData) return <p>No taste data available.</p>;
@@ -50,10 +52,7 @@ useEffect(() => {
     return(
         <>
              <div>
-                <p><strong>Taste Profile for Id {id}</strong></p>
-                <p>
-                    <strong>Dominant Flavor:</strong> {maxFlavor.key}
-                </p>
+                <p><strong>{props.id}'s Taste Profile / Dominant Flavor: {maxFlavor.key}</strong></p>
                 <br/>
             </div>
         </>
