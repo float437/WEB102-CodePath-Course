@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import {BrowserRouter, Routes, Route, Outlet} from 'react-router'
 const API_KEY = import.meta.env.VITE_APP_API_KEY
 import './App.css'
 import Sidebar from './Components/Sidebar'
+import MainPage from './Components/MainPage'
 import Summary from './Components/Summary'
 import MainDashboard from './Components/MainDashboard'
 
@@ -67,41 +69,6 @@ const getFoodListFromIngredients = async (ingredientsListFromMainDashboard) => {
       setIsLoading(false); // <--- stop loading
     }
 };
-
-// const nutritionGraphHelper = async(recipes) =>{
-//   if (!recipes || recipes.length === 0) {
-//     console.warn("No recipes provided to nutritionGraphHelper.");
-//     return;
-//   }
-
-//   const nutritionPromises = recipes.map(recipe => {
-//     // Ensure each recipe has an 'id' property
-//     if (recipe && recipe.id) {
-//       return getNutritionInfoFromId(recipe.id);
-//     } else {
-//       console.warn("Recipe missing ID:", recipe);
-//       return null; // Or handle this error appropriately
-//     }
-//   });
-
-//   try {
-//     const nutritionResults = await Promise.all(nutritionPromises);
-
-//     const processedNutritionData = nutritionResults.map(data => ({
-//       id: data.id, // Assuming the nutrition API returns the ID
-//       carbs: data.carbohydrates, // Adjust according to your API's response structure
-//       protein: data.protein
-//     }));
-
-//     // Update your state variable with the processed nutrition data
-//     setNutritionData(processedNutritionData);
-
-//   } catch (error) {
-//     console.error("Error fetching nutrition information:", error);
-//     // You might want to set an error state here as well
-//   }
-  
-// }
 
   const resetFoodList = async () => {
     setIsLoading(true); // <--- start loading
@@ -217,8 +184,6 @@ const getFoodListFromIngredients = async (ingredientsListFromMainDashboard) => {
         const response = await fetch(url);
         const json = await response.json();
         
-        // TODO : will this map the id to the nutrition info?
-        // setNutritionDictionary({...nutritionDictionary, id : json.nutrients});
         console.log("setting json: ", json)
         return {id : id, data: json};
       } catch (error) {
@@ -230,14 +195,14 @@ const getFoodListFromIngredients = async (ingredientsListFromMainDashboard) => {
 
   return (
     <>
-      <div className='flexSidebarContainer'>
-        <Sidebar/>
-        <div className='flexMainContainer'>
-          {/* <Summary isLoading = {isLoading}/> */}
-          <MainDashboard isLoading = {isLoading} recipes = {recipes} getFoodListFromIngredients={getFoodListFromIngredients} getFoodListFromId={getFoodListFromId} resetFoodList={resetFoodList} nutritionDataForCharts={nutritionDataForCharts}/>
-          </div>
-        
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Sidebar />}>
+            <Route index={true} element={<MainPage isLoading = {isLoading} recipes = {recipes} getFoodListFromIngredients={getFoodListFromIngredients} getFoodListFromId={getFoodListFromId} resetFoodList={resetFoodList} nutritionDataForCharts={nutritionDataForCharts}/>}/>
+            <Route path='idStuff' element={<MainPage/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
       
     </>
   )

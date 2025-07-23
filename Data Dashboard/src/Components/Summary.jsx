@@ -6,54 +6,57 @@ const Summary = (props) => {
     const [recipes, setRecipes] = useState([]); // stores full recipe objects
     const [isLoading, setIsLoading] = useState(false);
 
-    //Get Total Number of Recipes
-    useEffect(() => {
-      const getFoodList = async () => {
-        setIsLoading(true); // <--- start loading
-        try {
-          const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
-          const params = { apiKey: API_KEY, number: 10 };
-          const url = new URL(baseUrl);
-          url.search = new URLSearchParams(params).toString();
-    
-          const response = await fetch(url);
-          const json = await response.json();
-    
-          setRecipes(json.results || []); // use empty array as fallback
-        } catch (error) {
-          console.error("Fetch failed:", error);
-          setRecipes([]);
-        } finally {
-          setIsLoading(false); // <--- stop loading
-        }
-      };
-      getFoodList();
-    }, []);
+    // TODO move these Use Effects either outside the component / 
+    // TODO obtain the info from other functions and pass them down into the current Component for use
 
-    //Get Higheset Protein Meal
-    useEffect(() => {
-      const getHighestProteinRecipe = async () => {
-        setIsLoading(true); // <--- start loading
-        try {
-          const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
-          const params = { apiKey: API_KEY,minProtein: 50, number: 1 };
-          const url = new URL(baseUrl);
-          url.search = new URLSearchParams(params).toString();
+    //Get Total Number of Recipes
+    // useEffect(() => {
+    //   const getFoodList = async () => {
+    //     setIsLoading(true); // <--- start loading
+    //     try {
+    //       const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+    //       const params = { apiKey: API_KEY, number: 10 };
+    //       const url = new URL(baseUrl);
+    //       url.search = new URLSearchParams(params).toString();
     
-          const response = await fetch(url);
-          const json = await response.json();
+    //       const response = await fetch(url);
+    //       const json = await response.json();
     
-          setRecipes(json.results || []); // use empty array as fallback
-        } catch (error) {
-          console.error("Fetch failed:", error);
-          setRecipes([]);
-        } finally {
-          setIsLoading(false); // <--- stop loading
-        }
-      };
-      getHighestProteinRecipe();
-      console.log(recipes)
-    }, []);
+    //       setRecipes(json.results || []); // use empty array as fallback
+    //     } catch (error) {
+    //       console.error("Fetch failed:", error);
+    //       setRecipes([]);
+    //     } finally {
+    //       setIsLoading(false); // <--- stop loading
+    //     }
+    //   };
+    //   getFoodList();
+    // }, []);
+
+    // //Get Higheset Protein Meal
+    // useEffect(() => {
+    //   const getHighestProteinRecipe = async () => {
+    //     setIsLoading(true); // <--- start loading
+    //     try {
+    //       const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+    //       const params = { apiKey: API_KEY,minProtein: 50, number: 1 };
+    //       const url = new URL(baseUrl);
+    //       url.search = new URLSearchParams(params).toString();
+    
+    //       const response = await fetch(url);
+    //       const json = await response.json();
+    
+    //       setRecipes(json.results || []); // use empty array as fallback
+    //     } catch (error) {
+    //       console.error("Fetch failed:", error);
+    //       setRecipes([]);
+    //     } finally {
+    //       setIsLoading(false); // <--- stop loading
+    //     }
+    //   };
+    //   getHighestProteinRecipe();
+    //   console.log(recipes)
+    // }, []);
 
 
     return(
@@ -64,7 +67,7 @@ const Summary = (props) => {
                     <div className="cardBody">
                         <h2>Total Number of Recipes</h2>
                         <br></br>
-                        {props.isLoading ? (
+                        {/* {props.isLoading ? (
                                         <p>Loading...</p>
                                         ) : recipes.length > 0 ? (
                                         <h2>
@@ -72,12 +75,13 @@ const Summary = (props) => {
                                         </h2>
                                         ) : (
                                         <p>No recipes found.</p>
-                                    )}
+                                    )} */}
+                        <h2>10</h2> 
                     </div>
                     <div className="cardBody">
                         <h2>Recipe of the Day</h2>
                         <br></br>
-                        {props.isLoading ? (
+                        {/* {props.isLoading ? (
                                         <p>Loading...</p>
                                         ) : recipes.length > 0 ? (
                                         <h2>
@@ -85,12 +89,13 @@ const Summary = (props) => {
                                         </h2>
                                         ) : (
                                         <p>No recipes found.</p>
-                                    )}
+                                    )} */}
+                        <h2>Tuscan White Bean Soup with Olive Oil and Rosemary</h2>
                     </div>
                     <div className="cardBody">
                         <h2>Most Protein Recipe</h2>
                         <br></br>
-                        {props.isLoading ? (
+                        {/* {props.isLoading ? (
                                         <p>Loading...</p>
                                         ) : recipes.length > 0 ? (
                                         <ul>
@@ -98,7 +103,8 @@ const Summary = (props) => {
                                         </ul>
                                         ) : (
                                         <p>No recipes found.</p>
-                                    )}
+                                    )} */}
+                      <h2>Slow Cooker Beef Stew</h2>
                     </div>
                 </div>
                 

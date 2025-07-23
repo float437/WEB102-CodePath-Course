@@ -6,27 +6,6 @@ import BarChartComponent from "./BarChartComponent";
 import { data } from "react-router";
 const API_KEY = import.meta.env.VITE_APP_API_KEY
 
-const data1 = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-];
-
 const foodConsumptionData = [
   {
     year: '2000',
@@ -75,7 +54,7 @@ const foodConsumptionData = [
 const MainDashboard = (props) => {
     const [searchInputId, setSearchInputId] = useState(""); // what the user types in id inputbox
     const [searchInput, setSearchInput] = useState(""); // what the user types in recipe inputbox
-    const data1 = props.nutritionDataForCharts
+    const data = props.nutritionDataForCharts
 
 
 const handleSubmitIngredients = (e) =>{
@@ -139,7 +118,7 @@ const handleSubmitId = (e) =>{
             </div>
             <div className="dashboard-graphs">
               <div className="BarChart">
-                <BarChartComponent data={data1}/>
+                <BarChartComponent data={data}/>
               </div>
               <div className="LineChart">
                 <LineChartComponent data={foodConsumptionData}/>
