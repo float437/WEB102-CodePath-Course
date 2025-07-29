@@ -4,20 +4,13 @@
   font-style:normal;
   font-size: calc(10px + 2vmin);
   color: white;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.962);
-  padding:20px;
+  /* justify-content: center; */
+  background-color: grey;
+  /* padding:20px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.header{
-  width: 100%;
-  color:white;
-  text-align: center;
+  
 }
 
 .headerBtn {
@@ -46,4 +39,18 @@ button {
 }
 button:hover {
   border-color: #646cff;
+}
+
+.sideNav{
+  align-items: center;
+  /* justify-content: center; */
+  flex-shrink: 0;
+}
+
+.mainContent{
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  flex-shrink: 1;
+  overflow: visible;
 }

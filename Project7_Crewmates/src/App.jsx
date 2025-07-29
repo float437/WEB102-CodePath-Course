@@ -1,9 +1,12 @@
 import './App.css';
 import React from 'react';
 import { useRoutes } from 'react-router-dom'
+import HomePage from './pages/HomePage'
 import ReadPosts from './pages/ReadPosts'
 import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
+import SideBar from './components/SideBar'
+import Default from './pages/Default'
 import { Link } from 'react-router-dom'
 
 
@@ -36,7 +39,8 @@ const App = () => {
   let element = useRoutes([
     {
       path: "/",
-      element:<ReadPosts data={posts}/>
+      // element:<ReadPosts data={posts}/>
+      element:<HomePage/>
     },
     {
       path:"/edit/:id",
@@ -45,19 +49,21 @@ const App = () => {
     {
       path:"/new",
       element: <CreatePost />
+    },
+    {
+      path: "*",
+      element:<Default/>
     }
   ]);
 
   return ( 
 
     <div className="App">
-
-      <div className="header">
-        <h1>👍 Bet 1.0</h1>
-        <Link to="/"><button className="headerBtn"> Explore Challenges 🔍  </button></Link>
-        <Link to="/new"><button className="headerBtn"> Submit Challenge 🏆 </button></Link>
-      </div>
+      <SideBar className="sideNav" />
+      <div className="mainContent">
         {element}
+      </div>
+        
     </div>
 
   )
