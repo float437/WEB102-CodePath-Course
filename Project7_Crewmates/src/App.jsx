@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import ReadPosts from './pages/ReadPosts'
 import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
+import ViewPost from './pages/ViewPost'
 import SideBar from './components/SideBar'
 import Default from './pages/Default'
 import { Link } from 'react-router-dom'
@@ -39,16 +40,27 @@ const App = () => {
   let element = useRoutes([
     {
       path: "/",
-      // element:<ReadPosts data={posts}/>
       element:<HomePage/>
     },
     {
-      path:"/edit/:id",
+      path:"gallery/edit/:id",
       element: <EditPost data={posts} />
+    },
+    {
+      path:"gallery/edit/:id/name/:name/speed/:speed/color/:color",
+      element: <EditPost data={posts} />
+    },
+    {
+      path:"gallery/:id/name/:name/speed/:speed/color/:color",
+      element: <ViewPost data={posts} />
     },
     {
       path:"/new",
       element: <CreatePost />
+    },
+    {
+      path:"/gallery",
+      element: <ReadPosts data={posts}/>
     },
     {
       path: "*",

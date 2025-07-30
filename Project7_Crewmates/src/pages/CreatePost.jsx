@@ -4,11 +4,11 @@ import './CreatePost.css'
 
 const CreatePost = () => {
 
-    const [post, setPost] = useState({title: "", author: "", description: ""})
+    const [crewmateInfo, setCrewmateInfo] = useState({name: "", speed: 0, color: ""})
 
     const handleChange = (event) => {
         const {name, value} = event.target
-        setPost( (prev) => {
+        setCrewmateInfo( (prev) => {
             return {
                 ...prev,
                 [name]:value,
@@ -22,28 +22,43 @@ const CreatePost = () => {
     const createPost = async (event) => {
         event.preventDefault()
         await supabase
-            .from('Posts') 
-            .insert({title: post.title, author: post.author, description: post.description})
+            .from('crewmates') 
+            .insert({name: crewmateInfo.name, speed: crewmateInfo.speed, color: crewmateInfo.color})
             .select()
-
         window.location = "/"
     }
 
     return (
         <div>
             <form>
-                <label htmlFor="title">Title</label> <br />
-                <input type="text" id="title" name="title" onChange={handleChange} /><br />
+                <label htmlFor="name">Name</label> <br />
+                <input type="text" id="name" name="name" onChange={handleChange} /><br />
                 <br/>
 
-                <label htmlFor="author">Author</label><br />
-                <input type="text" id="author" name="author" onChange={handleChange} /><br />
+                <label htmlFor="speed">Speed</label><br />
+                <input type="number" id="speed" name="speed" onChange={handleChange} /><br />
                 <br/>
 
-                <label htmlFor="description">Description</label><br />
-                <textarea rows="5" cols="50" id="description" name="description" onChange={handleChange}>
-                </textarea>
+                <label>Color</label><br />
+                <input type="radio" id="red" name="color" value="red" onChange={handleChange} />
+                <label htmlFor="red">Red</label><br />
+                
+                <input type="radio" id="blue" name="color" value="blue" onChange={handleChange} />
+                <label htmlFor="blue">Blue</label><br />
+                
+                <input type="radio" id="green" name="color" value="green" onChange={handleChange} />
+                <label htmlFor="green">Green</label><br />
+                
+                <input type="radio" id="yellow" name="color" value="yellow" onChange={handleChange} />
+                <label htmlFor="yellow">Yellow</label><br />
+                
+                <input type="radio" id="purple" name="color" value="purple" onChange={handleChange} />
+                <label htmlFor="purple">Purple</label><br />
+                
+                <input type="radio" id="orange" name="color" value="orange" onChange={handleChange} />
+                <label htmlFor="orange">Orange</label><br />
                 <br/>
+                
                 <input type="submit" value="Submit" onClick={createPost} />
             </form>
         </div>

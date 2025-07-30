@@ -6,9 +6,9 @@ const SideBar = () => {
     return(
         <>
             <div className='sideNav'>
-                <Link to="/"><button className="headerBtn"> Explore Challenges 🔍  </button></Link>
-                <p>test Link</p>
-                <p>test Link</p>
+                <Link to="/"><button className="headerBtn"> Home  </button></Link>
+                <Link to="/new"><button className="headerBtn"> Create A Crewmate!  </button></Link>
+                <Link to="/gallery"><button className="headerBtn"> Crewmate Gallery  </button></Link>
             </div>
         </>
     )

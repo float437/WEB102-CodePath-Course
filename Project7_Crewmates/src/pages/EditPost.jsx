@@ -5,12 +5,16 @@ import {supabase} from '../client'
 
 const EditPost = ({data}) => {
 
-    const {id} = useParams()
-    const [post, setPost] = useState({id: null, title: "", author: "", description: ""})
+    const {id,name,speed,color} = useParams()
+    const [crewmateInfo, setCrewmateInfo] = useState({
+        name: name || "", 
+        speed: speed || 0, 
+        color: color || ""
+    })
 
     const handleChange = (event) => {
         const {name, value} = event.target
-        setPost( (prev) => {
+        setCrewmateInfo( (prev) => {
             return {
                 ...prev,
                 [name]:value,
@@ -20,12 +24,12 @@ const EditPost = ({data}) => {
 
     const updatePost = async (event) =>{
         event.preventDefault()
-        // grab Posts table
+        // grab crewmates table
         // update the object
         // on the column where id is id
         await supabase
-            .from('Posts')
-            .update({ title: post.title, author: post.author,  description: post.description})
+            .from('crewmates')
+            .update({ name: crewmateInfo.name, speed: crewmateInfo.speed,  color: crewmateInfo.color})
             .eq('id', id)
 
         // redirects back to home page
@@ -35,7 +39,7 @@ const EditPost = ({data}) => {
     const deletePost = async (event) =>{
         event.preventDefault()
         await supabase
-            .from('Posts')
+            .from('crewmates')
             .delete()
             .eq('id',id)
 
@@ -46,19 +50,89 @@ const EditPost = ({data}) => {
     return (
         <div>
             <form>
-                <label htmlFor="title">Title</label> <br />
-                <input type="text" id="title" name="title" value={post.title} onChange={handleChange} /><br />
+                <label htmlFor="name">Name</label> <br />
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    value={crewmateInfo.name}
+                    onChange={handleChange} 
+                /><br />
                 <br/>
 
-                <label htmlFor="author">Author</label><br />
-                <input type="text" id="author" name="author" value={post.author} onChange={handleChange} /><br />
+                <label htmlFor="speed">Speed</label><br />
+                <input 
+                    type="number" 
+                    id="speed" 
+                    name="speed" 
+                    value={crewmateInfo.speed}
+                    onChange={handleChange} 
+                /><br />
                 <br/>
 
-                <label htmlFor="description">Description</label><br />
-                <textarea rows="5" cols="50" id="description" name="description" value={post.description} onChange={handleChange} >
-                </textarea>
+                <label>Color</label><br />
+                <input 
+                    type="radio" 
+                    id="red" 
+                    name="color" 
+                    value="red" 
+                    checked={crewmateInfo.color === "red"}
+                    onChange={handleChange} 
+                />
+                <label htmlFor="red">Red</label><br />
+                
+                <input 
+                    type="radio" 
+                    id="blue" 
+                    name="color" 
+                    value="blue" 
+                    checked={crewmateInfo.color === "blue"}
+                    onChange={handleChange} 
+                />
+                <label htmlFor="blue">Blue</label><br />
+                
+                <input 
+                    type="radio" 
+                    id="green" 
+                    name="color" 
+                    value="green" 
+                    checked={crewmateInfo.color === "green"}
+                    onChange={handleChange} 
+                />
+                <label htmlFor="green">Green</label><br />
+                
+                <input 
+                    type="radio" 
+                    id="yellow" 
+                    name="color" 
+                    value="yellow" 
+                    checked={crewmateInfo.color === "yellow"}
+                    onChange={handleChange} 
+                />
+                <label htmlFor="yellow">Yellow</label><br />
+                
+                <input 
+                    type="radio" 
+                    id="purple" 
+                    name="color" 
+                    value="purple" 
+                    checked={crewmateInfo.color === "purple"}
+                    onChange={handleChange} 
+                />
+                <label htmlFor="purple">Purple</label><br />
+                
+                <input 
+                    type="radio" 
+                    id="orange" 
+                    name="color" 
+                    value="orange" 
+                    checked={crewmateInfo.color === "orange"}
+                    onChange={handleChange} 
+                />
+                <label htmlFor="orange">Orange</label><br />
                 <br/>
-                <input type="submit" value="Submit" onClick={updatePost}/>
+                
+                <input type="submit" value="Submit" onClick={updatePost} />
                 <button className="deleteButton" onClick={deletePost}>Delete</button>
             </form>
         </div>

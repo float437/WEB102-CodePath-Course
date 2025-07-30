@@ -5,17 +5,17 @@ import { supabase } from '../client.js'
 
 const ReadPosts = (props) => {
 
-    const [posts, setPosts] = useState([])
+    const [crewmateInfo, setCrewmateInfo] = useState([])
 
     useEffect(() => {
         const fetchPost = async () =>{
             const {data} = await supabase
-                .from('Posts')
+                .from('crewmates')
                 .select()
-                .order('created_at', { ascending: true })
+                .order('created_at', { ascending: false })
 
             // set state of posts
-            setPosts(data)
+            setCrewmateInfo(data)
         }
 
         fetchPost()
@@ -24,19 +24,17 @@ const ReadPosts = (props) => {
     return (
         <div className="ReadPosts">
             {
-                posts && posts.length > 0 ?
-                [...posts]
-                .sort((a, b) => a.id - b.id)
+                crewmateInfo && crewmateInfo.length > 0 ?
+                [...crewmateInfo]
                 .map((post,index) => 
                     <Card 
                         key={post.id}
                         id={post.id} 
-                        title={post.title}
-                        author={post.author}
-                        description={post.description}
-                        betCount={post.betCount}
+                        name={post.name}
+                        speed={post.speed}
+                        color={post.color}
                     />
-                ) : <h2>{'No Challenges Yet 😞'}</h2>
+                ) : <h2>{'No Crewmates Yet 😞'}</h2>
             }
         </div>  
     )
