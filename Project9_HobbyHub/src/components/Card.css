@@ -1,0 +1,63 @@
+.selected_card_element {
+  background-color: rgb(186, 186, 186);
+  padding: 2em;
+  
+  /* Enhanced styling */
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  /* Typography improvements */
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+.selected_card_element:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgb(196, 196, 196);
+}
+
+.selected_card_element:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Alternative darker theme variation */
+.selected_card_element.dark {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selected_card_element.dark:hover {
+  background-color: #333;
+}
+
+/* Modern glassmorphism variation */
+.selected_card_element.glass {
+  background: rgba(186, 186, 186, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Compact variation */
+.selected_card_element.compact {
+  padding: 1em;
+  border-radius: 8px;
+}
+
+/* Featured/highlighted variation */
+.selected_card_element.featured {
+  background: linear-gradient(135deg, rgb(186, 186, 186) 0%, rgb(206, 206, 206) 100%);
+  border: 2px solid #007acc;
+  box-shadow: 0 4px 20px rgba(0, 122, 204, 0.2);
+}
+
+.selected_card_element.featured:hover {
+  box-shadow: 0 8px 30px rgba(0, 122, 204, 0.3);
+}
