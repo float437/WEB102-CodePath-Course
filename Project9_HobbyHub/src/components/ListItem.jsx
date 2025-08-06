@@ -2,10 +2,12 @@ import react from "react"
 import './ListItem.css'
 import { supabase } from "../client"
 import {useState, useEffect} from "react"
+import {useRoutes, Link} from 'react-router-dom'
 
 const ListItem = (props) =>{
         const [up_votes, setUp_Votes] = useState(props.up_votes)
         const [down_votes, setDown_Votes] = useState(props.down_votes)
+        const [net_votes, setNet_Votes] = useState(0)
 
         const handleUpButton = async (event) =>{
             // updating screen first
@@ -38,12 +40,17 @@ const ListItem = (props) =>{
                 setDown_Votes(data)
             }
         }
+
+        useEffect(()=>{
+            setNet_Votes(up_votes - down_votes)
+        },[up_votes,down_votes])
     return (
         <div className="list_item">
             <p>ID: {props.id}</p>
             <p>Created: {props.creation_time}</p>
             <p>Q: {props.question}</p>
-            <p>Net Value: {props.up_votes - props.down_votes}</p>
+            <p>Net Value: {net_votes}</p>
+            <Link to={`/gallery/${props.id}`} ><button className="view_button" >View Me!</button></Link>
             <div className="voting_container">
                 <button className="up_vote_button" onClick={handleUpButton}>Rather: {up_votes}</button>
                 <button className="down_vote_button" onClick={handleDownButton}>Rather Not: {down_votes}</button>

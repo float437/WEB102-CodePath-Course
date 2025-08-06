@@ -5,7 +5,8 @@ import Header from './components/Header'
 import CreatePost from './pages/CreatePost'
 import Default from './pages/Default'
 import PostList from './pages/PostList'
-import EditPost from '../../Project7_Crewmates/src/pages/EditPost'
+import EditPost from './pages/EditPost'
+import ViewPost from './pages/ViewPost'
 
 function App() {
   let page = useRoutes([
@@ -18,8 +19,12 @@ function App() {
       element: <CreatePost/>
     },
     {
-      path: "/edit",
+      path: "/edit/:id",
       element: <EditPost/>
+    },
+    {
+      path:"/gallery/:id",
+      element: <ViewPost />
     },
     {
       path: "*",

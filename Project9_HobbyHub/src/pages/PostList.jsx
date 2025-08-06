@@ -8,10 +8,11 @@ import { supabase } from '../client.js'
 import './PostList.css'
 
 
-const ReadPosts = () => {
+const PostList = () => {
     const [cardInfo, setCardInfo] = useState([])
+    const [filteredPosts, setFilteredPosts] = useState([])
     const [creation_time, setCreationTime] = useState(true);
-    const [inputBar, setInputBar] = useState("")
+    const [searchTerm, setSearchTerm] = useState("")
 
     const fetchPost = async (column) =>{
         const {data} = await supabase
@@ -21,7 +22,23 @@ const ReadPosts = () => {
 
         // set state for the card's info; it holds whatever came back from the prompts DB.
         setCardInfo(data)
-        console.log(data)
+        setFilteredPosts(data) // Initialize filtered posts with all posts
+    }
+
+    // Filter posts based on search term
+    useEffect(() => {
+        if (!searchTerm.trim()) {
+            setFilteredPosts(cardInfo)
+        } else {
+            const filtered = cardInfo.filter(post => 
+                post.question && post.question.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            setFilteredPosts(filtered)
+        }
+    }, [searchTerm, cardInfo])
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value)
     }
 
     useEffect(() => {
@@ -40,13 +57,20 @@ const ReadPosts = () => {
                 <button className="" onClick={() => setCreationTime(true)}>Filter by Creation Time</button>
                 <button className="" onClick={() => setCreationTime(false)}>Filter by UpVotes</button>
                 <form>
-                    <input type="" id="sortByName" name="sortByName"></input>
+                    <input 
+                        type="text" 
+                        id="sortByName" 
+                        name="sortByName"
+                        placeholder="Search questions..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
                 </form>
             </div>
             <div className="read_posts">
                 {
-                    cardInfo && cardInfo.length > 0 ?
-                    [...cardInfo]
+                    filteredPosts && filteredPosts.length > 0 ?
+                    [...filteredPosts]
                     .map((post,index) => // TODO: understand the mapping here and how it works.
                         // TODO: once the item is clicked, it will take you to the specific card's page.
                         <ListItem 
@@ -57,7 +81,7 @@ const ReadPosts = () => {
                             up_votes={post.up_votes}
                             down_votes={post.down_votes}
                         />
-                    ) : <h2>{"No Rather's Created  😞"}</h2>
+                    ) : <h2>{searchTerm ? "No matching questions found 🔍" : "No Rather's Created  😞"}</h2>
                 }
                 
             </div>  
@@ -69,4 +93,4 @@ const ReadPosts = () => {
     )
 }
 
-export default ReadPosts
+export default PostList
