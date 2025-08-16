@@ -10,8 +10,8 @@ const Card = (props) =>{
             <p>{props.id}</p>
             <p>{props.question}</p>
             <div className="voting_container">
-                <button>{props.up_votes}</button>
-                <button>{props.down_votes}</button>
+                <button className="up_vote_button">{props.up_votes}</button>
+                <button className="down_vote_button">{props.down_votes}</button>
             </div>
         </div>
     )
